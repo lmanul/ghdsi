@@ -14,6 +14,10 @@ body {
   padding: 10px;
 }
 
+h1 {
+  color: #65a1da;
+}
+
 #team {
   list-style-type: none;
 }
@@ -64,10 +68,34 @@ function listTeam() {
   for (let i = 0; i < TEAM_MEMBERS.length; i++) {
     let id = TEAM_MEMBERS[i];
     let item = document.createElement('li');
-    item.innerHTML = '<img class="avatar" src="team/img/' + id + '.jpg" /><span class="ghid">' +
-        id + '</span>';
+    item.innerHTML = '<img class="avatar" src="team/img/' + id + '.jpg" />' +
+	      '<span class="ghid">@' + id + '</span>';
+    item.onclick = selectText;
     el.appendChild(item);
   }
+}
+
+function selectText(e) {
+  let node = e.target;
+  while (node.tagName.toLowerCase() != 'li') {
+    node = node.parentNode;
+  }
+  node = node.getElementsByClassName('ghid')[0];
+  if (document.body.createTextRange) {
+      const range = document.body.createTextRange();
+      range.moveToElementText(node);
+      range.select();
+  } else if (window.getSelection) {
+      const selection = window.getSelection();
+      const range = document.createRange();
+      range.selectNodeContents(node);
+      selection.removeAllRanges();
+      selection.addRange(range);
+  } else {
+      console.warn("Could not select text in node: Unsupported browser.");
+      return;
+  }
+  document.execCommand('copy');
 }
 
 </script>

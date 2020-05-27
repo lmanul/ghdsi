@@ -80,6 +80,7 @@ function listTeam() {
 	      '<span class="ghid">@' + id + '</span> ' +
         '<span class="name">' + name + '</span>';
     item.onclick = selectText;
+    item.setAttribute('title', name);
     el.appendChild(item);
   }
 }

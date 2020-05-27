@@ -1,0 +1,74 @@
+<html>
+<head>
+
+<style>
+
+html {
+  background-color: #eee;
+  font-family: Roboto;
+}
+
+body {
+  background-color: white;
+  margin: 20px;
+  padding: 10px;
+}
+
+#team {
+  list-style-type: none;
+}
+
+.avatar {
+  display: inline-block;
+  margin: 10px;
+  vertical-align: middle;
+  width: 75px;
+}
+
+.ghid {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+</style>
+
+</head>
+
+<body onload="listTeam()">
+
+<h1>Global Health Data Science Initiative</h1>
+
+<ul id="team"></ul>
+
+</body>
+
+<script>
+
+const TEAM_MEMBERS = [
+  'allysonjp715',
+  'attwad',
+  'axmb',
+  'katelynnobrien',
+  'khmoran',
+  'leslieleland',
+  'lmanul',
+  'rasmi',
+  'sratcliffe118',
+  'tbrewer-healthmap'
+];
+
+
+function listTeam() {
+  let el = document.getElementById('team');
+
+  for (let i = 0; i < TEAM_MEMBERS.length; i++) {
+    let id = TEAM_MEMBERS[i];
+    let item = document.createElement('li');
+    item.innerHTML = '<img class="avatar" src="team/img/' + id + '.jpg" /><span class="ghid">' +
+        id + '</span>';
+    el.appendChild(item);
+  }
+}
+
+</script>
+

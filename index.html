@@ -29,9 +29,14 @@ h1 {
   width: 75px;
 }
 
+.name {
+  display: inline-block;
+}
+
 .ghid {
   display: inline-block;
   vertical-align: middle;
+  width: 20ex;
 }
 
 </style>
@@ -48,29 +53,32 @@ h1 {
 
 <script>
 
-const TEAM_MEMBERS = [
-  'allysonjp715',
-  'attwad',
-  'axmb',
-  'iamleeg',
-  'katelynnobrien',
-  'khmoran',
-  'leslieleland',
-  'lmanul',
-  'rasmi',
-  'sratcliffe118',
-  'tbrewer-healthmap'
-];
+const TEAM_MEMBERS = {
+  'allysonjp715': 'Allyson Pemberton',
+  'attwad': 'Timothé Faudot',
+  'axmb': 'Alex Benjamin',
+  'iamleeg': 'Graham Lee',
+  'katelynnobrien': 'Katelynn O\'Brien',
+  'khmoran': 'Kelly Moran',
+  'leslieleland': 'Leslie Leland',
+  'lmanul': 'Manu Cornet',
+  'mougk': 'Moritz Krämer',
+  'rasmi': 'Rasmi Elasmar',
+  'scarpino': 'Sam Scarpino',
+  'sratcliffe118': 'Stephen Ratcliffe',
+  'tbrewer-healthmap': 'Thomas Brewer'
+};
 
 
 function listTeam() {
   let el = document.getElementById('team');
 
-  for (let i = 0; i < TEAM_MEMBERS.length; i++) {
-    let id = TEAM_MEMBERS[i];
+  for (let id in TEAM_MEMBERS) {
+    const name = TEAM_MEMBERS[id];
     let item = document.createElement('li');
     item.innerHTML = '<img class="avatar" src="team/img/' + id + '.jpg" />' +
-	      '<span class="ghid">@' + id + '</span>';
+	      '<span class="ghid">@' + id + '</span> ' +
+        '<span class="name">' + name + '</span>';
     item.onclick = selectText;
     el.appendChild(item);
   }

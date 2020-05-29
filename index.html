@@ -28,23 +28,34 @@ ul {
 
 #team {
   list-style-type: none;
+  margin: 2ex auto;
+  max-width: 70%;
 }
 
 .avatar {
-  display: inline-block;
   margin: 10px;
-  vertical-align: middle;
   width: 75px;
 }
 
-.name {
+#team li {
   display: inline-block;
 }
 
 .ghid {
-  display: inline-block;
-  vertical-align: middle;
-  width: 20ex;
+  /* Don't hide this to allow selection and copying, but make it invisible. */
+  color: white;
+  position: absolute;
+  top: -200px;
+}
+
+#clipboard-notice {
+  background-color: #65a1da;
+  border-radius: 4px;
+  color: white;
+  visibility: hidden;
+  margin: 10px auto;
+  padding: 1ex;
+  width: 50%;
 }
 
 </style>
@@ -61,7 +72,11 @@ ul {
 
 <h2>Team</h2>
 
+(Click to copy the GitHub handle into your clipboard)
+
 <ul id="team"></ul>
+
+<div id="clipboard-notice">GitHub handle copied to your clipboard.</div>
 
 <script>
 
@@ -91,9 +106,9 @@ function listTeam() {
   for (let id in TEAM_MEMBERS) {
     const name = TEAM_MEMBERS[id];
     let item = document.createElement('li');
-    item.innerHTML = '<img class="avatar" src="team/img/' + id + '.jpg" />' +
-	      '<span class="ghid">@' + id + '</span> ' +
-        '<span class="name">' + name + '</span>';
+    item.innerHTML = '<img class="avatar" gh="' + id +
+              '" src="team/img/' + id + '.jpg" />' +
+              '<span class="ghid">@' + id + '</span>';
     item.onclick = selectText;
     item.setAttribute('title', name);
     el.appendChild(item);
@@ -121,6 +136,11 @@ function selectText(e) {
       return;
   }
   document.execCommand('copy');
+  let notice = document.getElementById('clipboard-notice');
+  notice.style.visibility = 'visible';
+  window.setTimeout(function() {
+      document.getElementById('clipboard-notice').style.visibility = 'hidden';
+  }, 2000);
 }
 
 </script>

@@ -119,7 +119,7 @@ function listTeam() {
     let item = document.createElement('li');
     item.innerHTML = '<img class="avatar" gh="' + id +
               '" src="team/img/' + id + '.jpg" />' +
-              '<span class="ghid">@' + id + '</span>';
+              '<span class="ghid">' + id + '</span>';
     item.onclick = selectText;
     item.setAttribute('title', name);
     el.appendChild(item);
